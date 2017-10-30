@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Main;
 
-use App\countUpdatedDay;
+use App\countAgentRun;
 use App\docflowProperties;
 use App\Http\Controllers\Controller;
 use App\vwCountVersion;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Support\Facades\DB;
-use Mockery\Exception;
+
 
 class MainController extends Controller
 {
@@ -103,7 +101,7 @@ class MainController extends Controller
 
     // Conta quantos updates tiveram no dia
     public function countUpdated(){
-        $updated = countUpdatedDay::all();
+        $updated = countAgentRun::all();
         return $updated;
     }
 }

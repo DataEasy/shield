@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/ionicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/AdminLTE.min.css">
     <!--  Material Dashboard CSS    -->
     <link href="../css/material-dashboard.css?v=1.2.0" rel="stylesheet" />

@@ -301,7 +301,6 @@ class ComposerStaticInitc80417c12779b69d453b92d1f239a403
 
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
-        'App\\CountUpdatedDay' => __DIR__ . '/../..' . '/app/CountUpdatedDay.php',
         'App\\DocflowProperties' => __DIR__ . '/../..' . '/app/DocflowProperties.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Agent\\APIController' => __DIR__ . '/../..' . '/app/Http/Controllers/Agent/APIController.php',

@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Agent;
 
 use App\docflowProperties;
-use App\Http\Controllers\DB;
 use Carbon\Carbon;
-use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

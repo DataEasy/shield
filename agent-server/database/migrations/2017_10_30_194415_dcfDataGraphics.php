@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DcfUpdateAgent extends Migration
+class DcfDataGraphics extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class DcfUpdateAgent extends Migration
      */
     public function up()
     {
-        Schema::create('dcf_update_agent', function (Blueprint $table) {
+        Schema::create('dcf_datagraphics', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_bin';
             $table->increments('id');
-            $table->integer('agent_update');
+            $table->integer('count_agent_run');
+            $table->integer('count_client');
         });
     }
 

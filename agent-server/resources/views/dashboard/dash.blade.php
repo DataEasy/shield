@@ -8,9 +8,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="alert alert-warning">
-                        <i class="ion ion-android-warning">warning</i>
-                        Nenhum cliente na base!!!
+                    <div class="alert alert-warning alert-with-icon" data-notify="container">
+                        <i data-notify="icon" class="material-icons">warning</i>
+                        <span data-notify="message">Não foi encontrado nenhum cliente na basa.</span>
                     </div>
                 </div>
             </div>

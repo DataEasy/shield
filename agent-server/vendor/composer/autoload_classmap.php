@@ -7,7 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
-    'App\\CountUpdatedDay' => $baseDir . '/app/CountUpdatedDay.php',
+    'App\\countAgentRun' => $baseDir . '/app/CountUpdatedDay.php',
     'App\\DocflowProperties' => $baseDir . '/app/DocflowProperties.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Agent\\APIController' => $baseDir . '/app/Http/Controllers/Agent/APIController.php',
