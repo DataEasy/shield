@@ -1,40 +1,48 @@
 <?php
 
 #Test
-Route::get('/test', 'Agent\APIController@teste');
 Route::get('/lu', 'Main\MainController@lastUpdated');
 Route::get('/sv', 'Main\MainController@systemVersion');
 Route::get('/cc', 'Main\MainController@countClient');
 Route::get('/cv', 'Main\MainController@countVersion');
 Route::get('/lv', 'Main\MainController@lastVersion');
-Route::get('/lc', 'Main\MainController@dashTest');
+Route::get('/sumv', 'Main\MainController@sumVersions');
+Route::get('/cli', 'Client\ClientController@listClientDashboard');
+Route::get('/clid', 'Client\ClientController@clientDetails');
+Route::get('/cd/{id}', 'Client\ClientController@cdTest');
+
 Route::get('/dash', function (){
-    return view("dashboard.dashboard");
+    return view("layout.main");
 });
 
 Route::get('/test', 'Main\MainController@teste');
 
+Route::get('/client', function () {
+    return redirect('api/client');
+});
+
+Route::get('/dashboard', function () {
+    return redirect('/api/dashboard');
+});
+
 Route::group(array('prefix' => 'api'), function()
 {
-    Route::get('/', function () {
-        //return response()->json(['message' => 'Jobs API', 'status' => 'Connected']);
-        return redirect('/api/dashboard');
-    });
     Route::post('/readJSON', 'Agent\APIController@readJSON');
     Route::get('/json', 'Agent\APIController@listJSON');
     Route::get('/dashboard', 'Main\MainController@dashboardMain');
+    Route::get('/client', 'Main\MainController@dashboardClient');
+    Route::get('/client/details/{id}', 'Client\ClientController@clientDetails');
+    Route::get('/client/detailsresume/{id}', [
+        'as' => 'resume', 'uses' => 'Client\ClientController@clientDetailsResume'
+    ]);
 
     //Return Versions System - Qtde
     Route::get('/sv', 'Main\MainController@systemVersion');
 
 });
 
-
-
 Route::get('/', function () {
-
-    return redirect('api');
-
+    return redirect('api/dashboard');
 });
 
 

@@ -9,13 +9,6 @@ use App\Http\Controllers\Controller;
 
 class APIController extends Controller
 {
-    //
-    public function teste(){
-
-        return view('test.test');
-
-    }
-
     public function readJSON(Request $request) {
 
         try{

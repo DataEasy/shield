@@ -8,4 +8,7 @@ class countAgentRun extends Model
 {
     //
     protected $table = 'vw_count_agent_run';
+    protected $fillable = array(
+        'countAgentRun'
+    );
 }

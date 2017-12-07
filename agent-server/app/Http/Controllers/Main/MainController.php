@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Main;
 
-use App\countAgentRun;
 use App\docflowProperties;
+use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Controller;
 use App\vwCountVersion;
 
@@ -13,28 +13,28 @@ class MainController extends Controller
     //
     public function dashboardMain(){
 
-        //try {
+        try {
             $countClient = $this->countClient();
 
             if ( $countClient == 0) {
                 $message = "Não existem clientes cadastrados na Base de Dados!";
-                return view('dashboard.dash')->with('message', $message);
+                return view('dashboard.dashboard')->with('message', $message);
             } else {
 
+                $clientsList = new ClientController();
+                $clients = $clientsList->listClientDashboard();
 
                 $countVersion = $this->countVersion();
                 $lastVersion = $this->lastVersion();
                 $systemVersion = $this->systemVersion();
                 $systemVersionMax = $this->systemVersionMax();
-                $listClient = $this->listClient();
-                $updated = $this->countUpdated();
-
+                $sumVersions = $this->sumVersions();
                 $lastUpdate = $this->lastUpdated();
                 $lastUpdateDate = date('d.m.Y',strtotime($lastUpdate));
                 $lastUpdateTime = date('H:i:s',strtotime($lastUpdate));
                 $message = null;
 
-                return view('dashboard.dash')
+                return view('dashboard.dashboard')
                     ->with('countClient',$countClient)
                     ->with('countVersion',$countVersion)
                     ->with('lastUpdateDate',$lastUpdateDate)
@@ -42,18 +42,42 @@ class MainController extends Controller
                     ->with('lastVersion',$lastVersion)
                     ->with('systemVersion',$systemVersion)
                     ->with('systemVersionMax',$systemVersionMax)
-                    ->with('listClient',$listClient)
-                    ->with('updated',$updated)
+                    ->with('sumVersions',$sumVersions)
+                    ->with('clients', $clients)
                     ->with('message', $message);
             }
-        /*} catch ( \Exception $exception ){
+        } catch ( \Exception $exception ){
             return $exception;
-        }*/
+        }
+    }
+
+    public function dashboardClient(){
+
+        try {
+            $countClient = $this->countClient();
+
+            if ( $countClient == 0) {
+                $message = "Não existem clientes cadastrados na Base de Dados!";
+                return view('dashboard.dashboard')->with('message', $message);
+            } else {
+
+                $clientsList = new ClientController();
+                $clients = $clientsList->listAllClient();
+                $message = null;
+
+                return view('client.client')
+                    ->with('countClient',$countClient)
+                    ->with('clients', $clients)
+                    ->with('message', $message);
+            }
+        } catch ( \Exception $exception ){
+            return $exception;
+        }
     }
 
     public function teste(){
-        $countClient = $this->countClient();
-        echo $countClient;
+        $clients = new ClientController();
+        return $clients->listClientDashboard();
     }
 
     public function lastUpdated(){
@@ -69,7 +93,7 @@ class MainController extends Controller
         return $systemVersion;
     }
 
-    // Pega o maior valor na contagem das quantidade de versões
+    // Retorna o maior valor na contagem das quantidade de versões
     public function systemVersionMax(){
         $systemVersionMax = vwCountVersion::select('count')->max('count');
         return $systemVersionMax;
@@ -87,21 +111,15 @@ class MainController extends Controller
         return $countVersion;
     }
 
-    // Conta a Quantidade de Clientess
+    // Conta a Quantidade de Clientes
     public function countClient(){
         $countClient = docflowProperties::all()->count();
         return $countClient;
     }
 
-    // Lista a table dcf_properties
-    public function listClient(){
-        $listClient = docflowProperties::all();
-        return $listClient;
-    }
-
-    // Conta quantos updates tiveram no dia
-    public function countUpdated(){
-        $updated = countAgentRun::all();
-        return $updated;
+    // Return sum versions
+    public function sumVersions(){
+        $sumVersions = vwCountVersion::select('count')->sum('count');
+        return $sumVersions;
     }
 }

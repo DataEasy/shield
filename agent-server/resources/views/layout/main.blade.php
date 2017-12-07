@@ -1,199 +1,172 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>DataEasy - DocflowManager</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="../css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="../css/ionicons.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="../css/AdminLTE.min.css">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="../css/_all-skins.min.css">
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]-->
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <title>DataEasy - Dashboard</title>
 
-    <!-- Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    <style>
-        .example-modal .modal {
-            position: relative;
-            top: auto;
-            bottom: auto;
-            right: auto;
-            left: auto;
-            display: block;
-            z-index: 1;
-        }
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+    <!-- Bootstrap core CSS     -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
+    <!-- Animation library for notifications   -->
+    <link href="{{ asset('css/animate.min.css') }}" rel="stylesheet"/>
+    <!--  Paper Dashboard core CSS    -->
+    <link href="{{ asset('css/paper-dashboard.css') }}" rel="stylesheet"/>
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="{{ asset('css/demo.css') }}" rel="stylesheet" />
+    <!--  Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <link href="{{ asset('css/themify-icons.css') }}" rel="stylesheet">
 
-        .example-modal .modal {
-            background: transparent !important;
-        }
-    </style>
 </head>
-<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
-<body class="hold-transition skin-blue layout-top-nav">
+<body>
+
 <div class="wrapper">
+    <div class="sidebar" data-background-color="black" data-active-color="danger">
 
-    <header class="main-header">
-        <nav class="navbar navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <a href="#" class="navbar-brand"><b>Dataeasy</b>Manager</a>
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="/">Principal <span class="sr-only">(current)</span></a></li>
-                        <!--<li><a href="/">Link</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li> -->
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-                <!-- Navbar Right Menu -->
-                <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav">
-                        <!-- User Account Menu -->
-                        <li class="dropdown user user-menu">
-                            <!-- Menu Toggle Button -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <!-- The user image in the navbar-->
-                                <img src="../img/user_img.png" class="user-image" alt="User Image">
-                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                <span class="hidden-xs">DataEasy - Infraestrutura</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <!-- The user image in the menu -->
-                                <li class="user-header">
-                                    <img src="../img/user_img.png" class="img-circle" alt="User Image">
-
-                                    <p>
-                                        DataEasy - Infraestrutura
-                                        <small></small>
-                                    </p>
-                                </li>
-                                <!-- Menu Body -->
-                                <!-- <li class="user-body">
-                                    <div class="row">
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Followers</a>
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Sales</a>
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Friends</a>
-                                        </div>
-                                    </div>
-                                </li> -->
-                                <!-- /.row -->
-                                <!-- Menu Footer-->
-                                <!--<li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                                    </div>
-                                </li>-->
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-custom-menu -->
+        <!--
+            Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+            Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+        -->
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="http://www.dataeasy.com.br" class="simple-text">
+                    <img src="{{ asset('img/logo/logo.png') }}">
+                    DataEasy
+                </a>
             </div>
-            <!-- /.container-fluid -->
-        </nav>
-    </header>
-    <!-- Full Width Column -->
-    <div class="content-wrapper">
-        <div class="container">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <h1>
-                    Dashboard
-                    <small>Configuração</small>
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-                    <li><a href="#">Configuração</a></li>
-                    <li class="active">Docflow</li>
-                </ol>
-            </section>
 
-            <!-- Main content -->
-            <section class="content">
+            @php($menu = '/' . Request::path('/'))
 
-                    @yield('conteudo')
+            <ul class="nav">
+                @if ($menu == "/api/dashboard")
+                    <li class="active">
+                        <a href="/dashboard">
+                            <i class="ti-panel"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/client">
+                            <i class="ti-user"></i>
+                            <p>Client Config</p>
+                        </a>
+                    </li>
+                @elseif($menu == "/api/client")
+                    <li>
+                        <a href="/dashboard">
+                            <i class="ti-panel"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="/client">
+                            <i class="ti-user"></i>
+                            <p>Client Config</p>
+                        </a>
+                    </li>
 
-            </section>
-            <!-- /.content -->
+                @else
+                    <li>
+                        <a href="/dashboard">
+                            <i class="ti-panel"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/client">
+                            <i class="ti-user"></i>
+                            <p>Client Config</p>
+                        </a>
+                    </li>
+
+                @endif
+            </ul>
         </div>
-        <!-- /.container -->
     </div>
-    <!-- /.content-wrapper -->
-    <footer class="main-footer">
-        <div class="container">
-            <div class="pull-right hidden-xs">
-                <b>Version</b> 2.4.0
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar bar1"></span>
+                        <span class="icon-bar bar2"></span>
+                        <span class="icon-bar bar3"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Docflow - Dashboard</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                    </ul>
+
+                </div>
             </div>
-            <strong>Copyright &copy; 2017-2018 <a href="https://www.dataeasy.com.br">DataEasy - Infraestrutura</a>.</strong> All rights
-            reserved.
-        </div>
-        <!-- /.container -->
-    </footer>
+        </nav>
+
+
+        @yield('content')
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="copyright pull-right">
+                    &copy; <script>document.write(new Date().getFullYear())</script> by <a href="http://www.dataeasy.com.br">DataEasy <img width="8%" src="{{ asset('img/logo/logo.png') }}"></img></a>
+                </div>
+            </div>
+        </footer>
+
+    </div>
 </div>
-<!-- ./wrapper -->
 
-<!-- jQuery 3 -->
-<script src="../js/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="../js/bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="../js/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="../js/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="../js/adminlte.min.js"></script>
-
-<!-- FLOT CHARTS -->
-<script src="../js/jquery.flot.js"></script>
-<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
-<script src="../js/jquery.flot.resize.js"></script>
-<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
-<script src="../js/jquery.flot.pie.js"></script>
-<!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
-<script src="../js/jquery.flot.categories.js"></script>
-
-
-@yield('javascript')
 
 </body>
+
+<!--   Core JS Files   -->
+<script src="{{ asset('js/jquery-1.10.2.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+
+<!--  Checkbox, Radio & Switch Plugins -->
+<script src="{{ asset('js/bootstrap-checkbox-radio.js') }}"></script>
+
+<!--  Charts Plugin -->
+<script src="{{ asset('js/chartist.min.js') }}"></script>
+
+<!--  Notifications Plugin    -->
+<script src="{{ asset('js/bootstrap-notify.js') }}"></script>
+
+<!--  Google Maps Plugin    -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
+<!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+<script src="{{ asset('js/paper-dashboard.js') }}"></script>
+
+<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+<script src="{{ asset('js/dedash.js') }}"></script>
+
+<script type="text/javascript">
+    /*$(document).ready(function(){
+
+        dedash.initChartist();
+
+        $.notify({
+            icon: 'ti-gift',
+            message: "Welcome to <b>Paper Dashboard</b> - a beautiful Bootstrap freebie for your next project."
+
+        },{
+            type: 'info',
+            timer: 4000
+        });
+
+    });*/
+
+</script>
+
+@yield('content-script')
+
 </html>
