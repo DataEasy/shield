@@ -43,50 +43,57 @@
 
             @php($menu = '/' . Request::path('/'))
 
-            <ul class="nav">
-                @if ($menu == "/api/dashboard")
-                    <li class="active">
-                        <a href="/dashboard">
-                            <i class="ti-panel"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/client">
-                            <i class="ti-user"></i>
-                            <p>Client Config</p>
-                        </a>
-                    </li>
-                @elseif($menu == "/api/client")
-                    <li>
-                        <a href="/dashboard">
-                            <i class="ti-panel"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li class="active">
-                        <a href="/client">
-                            <i class="ti-user"></i>
-                            <p>Client Config</p>
-                        </a>
-                    </li>
+            @if ( $message == null )
 
-                @else
-                    <li>
-                        <a href="/dashboard">
-                            <i class="ti-panel"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/client">
-                            <i class="ti-user"></i>
-                            <p>Client Config</p>
-                        </a>
-                    </li>
+                <ul class="nav">
+                    @if ($menu == "/api/dashboard")
+                        <li class="active">
+                            <a href="/dashboard">
+                                <i class="ti-panel"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/client">
+                                <i class="ti-user"></i>
+                                <p>Client Config</p>
+                            </a>
+                        </li>
 
-                @endif
-            </ul>
+                    @elseif($menu == "/api/client")
+
+                        <li>
+                            <a href="/dashboard">
+                                <i class="ti-panel"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="/client">
+                                <i class="ti-user"></i>
+                                <p>Client Config</p>
+                            </a>
+                        </li>
+
+                    @else
+                        <li>
+                            <a href="/dashboard">
+                                <i class="ti-panel"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/client">
+                                <i class="ti-user"></i>
+                                <p>Client Config</p>
+                            </a>
+                        </li>
+
+                    @endif
+                </ul>
+
+            @endif
+
         </div>
     </div>
 

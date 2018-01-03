@@ -18,7 +18,7 @@ class MainController extends Controller
 
             if ( $countClient == 0) {
                 $message = "Não existem clientes cadastrados na Base de Dados!";
-                return view('dashboard.dashboard')->with('message', $message);
+                return view('dashboard.start')->with('message', $message);
             } else {
 
                 $clientsList = new ClientController();
