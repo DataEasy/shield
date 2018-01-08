@@ -11,7 +11,7 @@ import java.util.*;
 
 public class ConfigProperties {
 
-    private static final String URL = "http://192.168.200.10:8000/api/readJSON";
+    private static final String URL = "http://shield.dataeasy.com.br/api/readJSON";
 
     public static void main(String[] args) throws IOException {
 
@@ -19,6 +19,7 @@ public class ConfigProperties {
             System.err.println("ARGS is not valid!!!");
             System.out.println("Usage: ");
             System.out.println("\t java -jar AgentClient.jar CLIENT CNPJ ENVIRONMENT");
+            System.out.println("\t ENVIRONMENT: PRODUCTION | HOMOLOGATION | TRAINING | DEMO");
             // Se não vier com algum parametro, sai
             System.exit(0);
         }

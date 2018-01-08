@@ -1,6 +1,7 @@
-/media/discoD/git/github/dataeasy/configs/shell-scripts/agent/agent-client/src/main/java/br/com/dataeasy/agentclient/DocflowVersion.java
-/media/discoD/git/github/dataeasy/configs/shell-scripts/agent/agent-client/src/main/java/br/com/dataeasy/agentclient/DocflowConfig.java
-/media/discoD/git/github/dataeasy/configs/shell-scripts/agent/agent-client/src/main/java/br/com/dataeasy/agentclient/HelloWorld.java
-/media/discoD/git/github/dataeasy/configs/shell-scripts/agent/agent-client/src/main/java/br/com/dataeasy/agentclient/JbossConfig.java
-/media/discoD/git/github/dataeasy/configs/shell-scripts/agent/agent-client/src/main/java/br/com/dataeasy/agentclient/OperationalSystem.java
-/media/discoD/git/github/dataeasy/configs/shell-scripts/agent/agent-client/src/main/java/br/com/dataeasy/agentclient/ConfigProperties.java
+/media/discoD/GIT/GITHUB/DATAEASY/shield/agent-client/src/main/java/br/com/dataeasy/agentclient/HttpUtil.java
+/media/discoD/GIT/GITHUB/DATAEASY/shield/agent-client/src/main/java/br/com/dataeasy/agentclient/DocflowConfig.java
+/media/discoD/GIT/GITHUB/DATAEASY/shield/agent-client/src/main/java/br/com/dataeasy/agentclient/HelloWorld.java
+/media/discoD/GIT/GITHUB/DATAEASY/shield/agent-client/src/main/java/br/com/dataeasy/agentclient/OperationalSystem.java
+/media/discoD/GIT/GITHUB/DATAEASY/shield/agent-client/src/main/java/br/com/dataeasy/agentclient/ConfigProperties.java
+/media/discoD/GIT/GITHUB/DATAEASY/shield/agent-client/src/main/java/br/com/dataeasy/agentclient/JbossConfig.java
+/media/discoD/GIT/GITHUB/DATAEASY/shield/agent-client/src/main/java/br/com/dataeasy/agentclient/DocflowVersion.java
