@@ -13,7 +13,6 @@ public class HelloWorld {
         System.out.println("OS.NAME: " + os_name);
         os_name = os_name.split(" ")[0];
         System.out.println("SPLIT: " + os_name);
-
     }
 
 }

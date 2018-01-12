@@ -30,10 +30,9 @@ public class ConfigProperties {
         String client = args[0];
         //String cnpj = "06052373000192";
         String cnpj = args[1];
-        // String env = "PRODUÇÃO"
+        // String env = "PRODUÇÃO";
         String env = args[2];
         String dcfVersion = DocflowVersion.getDocflowVersion();
-
 
         String dataeasyConfigPath = null;
 
@@ -43,12 +42,10 @@ public class ConfigProperties {
         //JsonFile
         String jsonFile = "config." + client + ".config.json";
 
-        if ( osName == "Linux") {
+        if ("Linux".equalsIgnoreCase(osName)) {
             String pathJsonFile = "/tmp";
             jsonFile = pathJsonFile + "/" + jsonFile;
         }
-
-        Writer jsonWriter = new OutputStreamWriter(new FileOutputStream(jsonFile) , "UTF-8");
 
         //Get JBOSS_HOME
         String jbossConfig = JbossConfig.getJbossPath();
@@ -59,7 +56,7 @@ public class ConfigProperties {
         // Get VAR: Windows(%JBOSS_HOME%) or Linux ($JBOSS_HOME)
         String varJBoss = JbossConfig.getVarJboss(osName);
 
-        try{
+        try (Writer jsonWriter = new OutputStreamWriter(new FileOutputStream(jsonFile) , "UTF-8")) {
             List<String> lines = Files.readAllLines(Paths.get(jbossConfigPath), Charset.forName("UTF-8"));
 
             for (String line : lines) {
@@ -95,9 +92,6 @@ public class ConfigProperties {
             gson.toJsonTree(map);
             gson.toJson(map,jsonWriter);
             String json = gson.toJson(map);
-
-            // Save JSON
-            jsonWriter.close();
 
             HttpUtil.postJson(json, URL);
 

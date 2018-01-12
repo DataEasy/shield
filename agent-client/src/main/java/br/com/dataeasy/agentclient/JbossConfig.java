@@ -25,7 +25,7 @@ public class JbossConfig {
     public static String getVarJboss(String osName){
 
         // Return of VARIABLE depending OS
-        if ( osName.equals("Windows")){
+        if ( osName.equalsIgnoreCase("Windows")){
             return "%JBOSS_HOME%";
         }
         return "$JBOSS_HOME";
