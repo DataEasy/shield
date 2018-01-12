@@ -2,6 +2,7 @@ package br.com.dataeasy.agentclient;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -36,17 +37,25 @@ public class ConfigProperties {
 
         String dataeasyConfigPath = null;
 
-        //JsonFile
-        String jsonFile = "config." + client + ".config.json";
-        //String jsonFile = "config." + args[0] + ".config.json";
-        Writer jsonWriter = new OutputStreamWriter(new FileOutputStream(jsonFile) , "UTF-8");
-
         //Get SO
         String osName = OperationalSystem.getOSName();
+
+        //JsonFile
+        String jsonFile = "config." + client + ".config.json";
+
+        if ( osName == "Linux") {
+            String pathJsonFile = "/tmp";
+            jsonFile = pathJsonFile + "/" + jsonFile;
+        }
+
+        Writer jsonWriter = new OutputStreamWriter(new FileOutputStream(jsonFile) , "UTF-8");
+
         //Get JBOSS_HOME
         String jbossConfig = JbossConfig.getJbossPath();
+
         // Get JBoss Config (Standalone.conf)
         String jbossConfigPath = JbossConfig.getJbossConfig(osName);
+
         // Get VAR: Windows(%JBOSS_HOME%) or Linux ($JBOSS_HOME)
         String varJBoss = JbossConfig.getVarJboss(osName);
 
