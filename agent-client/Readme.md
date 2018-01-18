@@ -1,26 +1,26 @@
-### Gerar agent-client.jar
+## Gerar agent-client.jar
 
-    #### Configurar Intellij
+#### Configurar Intellij
 
-        File
-          Project Structure
-          Artifacts
-          +
-          Jar
-          From modules with dependencies
-          Selected Main Class after browsing
-          selected extract to the target jar
-          Directory for META-INF automatically gets populated
-          OK
-          Apply
-          OK 
+    File
+        Project Structure
+        Artifacts
+        +
+        Jar
+        From modules with dependencies
+        Selected Main Class after browsing
+        selected extract to the target jar
+        Directory for META-INF automatically gets populated
+        OK
+        Apply
+        OK 
           
-    #### Gerar
+#### Gerar
 
         Build Build Artifacts
         Build
 
-    #### Após gerar .jar
+#### Após gerar .jar
 
         Abrir o agent-client.jar em algum software de compactação e editar o arquivo MANIFEST.MF
         Adicionar a seguinte no arquivo:
@@ -31,3 +31,23 @@
         Manifest-Version: 1.0
         Main-Class: br.com.dataeasy.agentclient.ConfigProperties
         ...
+
+## Instalação do Agent
+
+### Download Agent of Shield
+
+	curl -u well:well -O -# http://download.dataeasy.com.br/well/Instaladores/shield/agent/agent-client.jar
+
+### Crontab
+
+	JBOSS_HOME=/opt/jboss
+
+	# Agent of Shield
+	0 0 * * * /opt/sistemas/dataeasy/shield/agent-shield
+
+### Shield
+
+	vim /path/agent/of/shield/agent-shield
+
+	#!/bin/bash
+	/opt/java/bin/java -jar /opt/sistemas/dataeasy/shield/agent-client.jar CLIENT CNPJ ENVIRONMENT
