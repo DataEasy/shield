@@ -1,5 +1,9 @@
 <?php
 
+Auth::routes();
+
+//Route::get('/api/dashboard', 'Main\MainController@dashboardMain');
+
 #Test
 Route::get('/lu', 'Main\MainController@lastUpdated');
 Route::get('/sv', 'Main\MainController@systemVersion');
@@ -45,7 +49,6 @@ Route::get('/', function () {
     return redirect('api/dashboard');
 });
 
-
 /*
 
 curl -X POST \
@@ -62,4 +65,8 @@ curl -X POST \
 }'
 
 */
+
+
+
+
 

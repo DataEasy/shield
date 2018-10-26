@@ -7,6 +7,17 @@ use App\Http\Controllers\Controller;
 
 class ClientController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     // Return List Client on table dcf_properties
     public function listAllClient(){
 
