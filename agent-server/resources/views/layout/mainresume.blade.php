@@ -26,7 +26,10 @@
 </head>
 <body>
 
+    <div
+
     @yield('resume')
+    @yield('content')
 
 </body>
 

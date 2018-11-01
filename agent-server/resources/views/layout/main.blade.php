@@ -6,7 +6,10 @@
     <link rel="icon" type="image/png" sizes="96x96" href="img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>DataEasy - Dashboard</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -86,10 +89,17 @@
                             <p>Client Config</p>
                         </a>
                     </li>
-                </ul>
 
             @endif
 
+
+                <li>
+                    <a href="/logout">
+                        <i class="ti-loop"></i>
+                        <p>LOGOUT</p>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 
@@ -99,16 +109,20 @@
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle">
                         <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar bar1"></span>
-                        <span class="icon-bar bar2"></span>
-                        <span class="icon-bar bar3"></span>
+                        <span class="icon-bar bar1">fff</span>
+                        <span class="icon-bar bar2">ggg</span>
+                        <span class="icon-bar bar3">hhh</span>
                     </button>
-                    <a class="navbar-brand" href="#">Docflow - Dashboard</a>
+                    <div class="col-md-12">
+                        <a class="navbar-brand" href="#">Docflow - Dashboard</a>
+                    </div>
+
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
+                        <span class="fa fa-user"></span>
+                        {{{ \Illuminate\Support\Facades\Auth::user()->name }}}
                     </ul>
-
                 </div>
             </div>
         </nav>
@@ -151,24 +165,6 @@
 
 <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{ asset('js/dedash.js') }}"></script>
-
-<script type="text/javascript">
-    /*$(document).ready(function(){
-
-        dedash.initChartist();
-
-        $.notify({
-            icon: 'ti-gift',
-            message: "Welcome to <b>Paper Dashboard</b> - a beautiful Bootstrap freebie for your next project."
-
-        },{
-            type: 'info',
-            timer: 4000
-        });
-
-    });*/
-
-</script>
 
 @yield('content-script')
 
