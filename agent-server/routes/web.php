@@ -2,6 +2,12 @@
 
 Auth::routes();
 
+Route::get('/logout', function(){
+    Auth::logout();
+    return Redirect::to('/api/login');
+});
+
+
 //Route::get('/api/dashboard', 'Main\MainController@dashboardMain');
 
 #Test
@@ -25,12 +31,17 @@ Route::get('/client', function () {
     return redirect('api/client');
 });
 
+Route::get('/login', function () {
+    return redirect('/api/login');
+});
+
 Route::get('/dashboard', function () {
     return redirect('/api/dashboard');
 });
 
 Route::group(array('prefix' => 'api'), function()
 {
+
     Route::post('/readJSON', 'Agent\APIController@readJSON');
     Route::get('/json', 'Agent\APIController@listJSON');
     Route::get('/dashboard', 'Main\MainController@dashboardMain');
