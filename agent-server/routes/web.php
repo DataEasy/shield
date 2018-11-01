@@ -4,11 +4,8 @@ Auth::routes();
 
 Route::get('/logout', function(){
     Auth::logout();
-    return Redirect::to('/api/login');
+    return Redirect::to('/api/dashboard');
 });
-
-
-//Route::get('/api/dashboard', 'Main\MainController@dashboardMain');
 
 #Test
 Route::get('/lu', 'Main\MainController@lastUpdated');
@@ -31,8 +28,8 @@ Route::get('/client', function () {
     return redirect('api/client');
 });
 
-Route::get('/login', function () {
-    return redirect('/api/login');
+Route::get('/api/login', function () {
+    return redirect('/api/dashboard');
 });
 
 Route::get('/dashboard', function () {
