@@ -12,7 +12,7 @@
             <div class="img-rounded">
                 <img src="{{ asset('img/logo/logo_login.png') }}" alt="DataEasy" id="icon" alt="User Icon" />
                 <div>
-                    <h1>SHIELD</h1>
+                    <h21>SHIELD</h21>
                 </div>
 
             </div>

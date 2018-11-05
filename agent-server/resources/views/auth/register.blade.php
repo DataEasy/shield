@@ -1,77 +1,78 @@
-@extends('layouts.app')
+{{--@extends('layouts.app')--}}
+@extends('layout.login')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+
+
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+        {{--<h2 class="active"> Sign In </h2>--}}
+        {{--<h2 class="inactive underlineHover">Sign Up </h2>--}}
+
+        <!-- Icon -->
+            <div class="img-rounded">
+                <img src="{{ asset('img/logo/logo_login.png') }}" alt="DataEasy" id="icon" alt="User Icon" />
+                <div>
+                    <h22>SHIELD - Registro</h22>
+                </div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                            <input type="text" id="name" class="fadeIn second" name="name" placeholder="Nome" value="{{ old('name') }}" required autofocus>
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                            <input type="email" id="email" class="fadeIn second" name="email" placeholder="EMail" value="{{ old('email') }}" required autofocus>
                         </div>
+
+
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                            <input type="password" id="" class="fadeIn second" name="password" placeholder="Senha" required>
+                        </div>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                        <div class="form-group{{ $errors->has('password-confirm') ? ' has-error' : '' }}">
+                            <input type="password" id="password-confirm" class="fadeIn second" name="password_confirmation" placeholder="Confirme a Senha" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            <div class="form-group">
+                                <input type="submit" class="fadeIn fourth" value="Registrar">
+                                <input type="button" class="fadeIn fourth" value="Voltar" onclick="goBack()">
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
+                        @if ($errors->has('name'))
+                            <div class="alert alert-warning">
+                                {{ $errors->first('name') }}
                             </div>
-                        </div>
+                        @endif
+
+                        @if ($errors->has('email'))
+                            <div class="alert alert-warning">
+                                {{ $errors->first('email') }}
+                            </div>
+                        @endif
+
+                        @if ($errors->has('password'))
+                            <div class="alert alert-warning">
+                                {{ $errors->first('password') }}
+                            </div>
+                        @endif
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
 @endsection

@@ -22,7 +22,8 @@
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="{{ asset('css/demo.css') }}" rel="stylesheet" />
     <!--  Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    {{--<link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">--}}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href="{{ asset('css/themify-icons.css') }}" rel="stylesheet">
 
@@ -50,13 +51,13 @@
                 @if ($menu == "/api/dashboard")
                     <li class="active">
                         <a href="/dashboard">
-                            <i class="ti-panel"></i>
+                            <i class="fa fa-tachometer-alt"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
                     <li>
                         <a href="/client">
-                            <i class="ti-user"></i>
+                            <i class="fa fa-user-shield"></i>
                             <p>Client Config</p>
                         </a>
                     </li>
@@ -65,13 +66,13 @@
 
                     <li>
                         <a href="/dashboard">
-                            <i class="ti-panel"></i>
+                            <i class="fa fa-tachometer-alt"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
                     <li class="active">
                         <a href="/client">
-                            <i class="ti-user"></i>
+                            <i class="fa fa-user-shield"></i>
                             <p>Client Config</p>
                         </a>
                     </li>
@@ -79,23 +80,32 @@
                 @else
                     <li>
                         <a href="/dashboard">
-                            <i class="ti-panel"></i>
+                            <i class="fa fa-tachometer-alt"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
                     <li>
                         <a href="/client">
-                            <i class="ti-user"></i>
+                            <i class="fa fa-user-shield"></i>
                             <p>Client Config</p>
                         </a>
                     </li>
 
             @endif
 
+                @if ( \Illuminate\Support\Facades\Auth::user()->id == "1" )
+                        <li>
+                            <a href="/register">
+                                <i class="fa fa-user-plus"></i>
+                                <p>Adicionar Usuário</p>
+                            </a>
+                        </li>
+                @endif
+
 
                 <li>
                     <a href="/logout">
-                        <i class="ti-loop"></i>
+                        <i class="fa fa-power-off"></i>
                         <p>LOGOUT</p>
                     </a>
                 </li>
@@ -113,14 +123,11 @@
                         <span class="icon-bar bar2">ggg</span>
                         <span class="icon-bar bar3">hhh</span>
                     </button>
-                    <div class="col-md-12">
-                        <a class="navbar-brand" href="#">Docflow - Dashboard</a>
-                    </div>
-
+                    <a class="navbar-brand" href="#">Docflow - Dashboard</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <span class="fa fa-user"></span>
+                        <span class="fa fa-user-circle"></span>
                         {{{ \Illuminate\Support\Facades\Auth::user()->name }}}
                     </ul>
                 </div>

@@ -11,7 +11,7 @@
                             <div class="row">
                                 <div class="col-xs-5">
                                     <div class="icon-big icon-warning text-center">
-                                        <i class="ti-user"></i>
+                                        <i class="fa fa-user-friends"></i>
                                     </div>
                                 </div>
                                 <div class="col-xs-7">
@@ -36,7 +36,7 @@
                             <div class="row">
                                 <div class="col-xs-5">
                                     <div class="icon-big icon-success text-center">
-                                        <i class="ti-pulse"></i>
+                                        <i class="fa fa-chart-bar"></i>
                                     </div>
                                 </div>
                                 <div class="col-xs-7">
@@ -61,7 +61,7 @@
                             <div class="row">
                                 <div class="col-xs-5">
                                     <div class="icon-big icon-danger text-center">
-                                        <i class="ti-exchange-vertical"></i>
+                                        <i class="fa fa-cloud-upload-alt"></i>
                                     </div>
                                 </div>
                                 <div class="col-xs-7">
@@ -86,7 +86,7 @@
                             <div class="row">
                                 <div class="col-xs-5">
                                     <div class="icon-big icon-info text-center">
-                                        <i class="ti-layers-alt"></i>
+                                        <i class="fa fa-code-branch"></i>
                                     </div>
                                 </div>
                                 <div class="col-xs-7">
@@ -117,7 +117,7 @@
                     <div class="content table-responsive table-full-width">
                         <table class="table table-hover">
                             <thead>
-                            <th>ID</th>
+                            {{--<th>ID</th>--}}
                             <th>Name</th>
                             <th>Environment</th>
                             <th>Version</th>
@@ -127,14 +127,14 @@
                             <tbody>
                                 @foreach( $clients as $cli )
                                     <tr>
-                                        <td> {{ $cli->id }}</td>
+                                        {{--<td> {{ $cli->id }}</td>--}}
                                         <td> {{ strtoupper($cli->cli_name) }} </td>
                                         <td> {{ strtoupper($cli->cli_env) }} </td>
                                         <td> {{ $cli->cli_version_system }} </td>
                                         <td> {{ date('d.m.Y', strtotime($cli->updated_at)) }} </td>
                                         <td>
                                             <a href="/api/client/details/{{ $cli->id }}">
-                                                <span class="ti-settings"></span>
+                                                <span class="fa fa-user-cog"></span>
                                             </a>
                                         </td>
                                     </tr>

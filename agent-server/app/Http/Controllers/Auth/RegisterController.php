@@ -27,7 +27,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -36,7 +36,11 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        // WITHOUT autenticate
+        //$this->middleware('guest');
+
+        // WITH Autenticate
+        $this->middleware('auth');
     }
 
     /**

@@ -57,6 +57,9 @@ Route::get('/', function () {
     return redirect('api/dashboard');
 });
 
+
+Route::post('register', 'Auth\RegisterController@register');
+
 /*
 
 curl -X POST \
