@@ -34,7 +34,7 @@ class ClientController extends Controller
     public function listClientDashboard(){
 
         try{
-            $clientDash = docflowProperties::all()->take(10);
+            $clientDash = docflowProperties::all()->take(10)->sortByDesc('cli_name');
             return $clientDash;
 
         } catch ( \Exception $exception ){
@@ -46,15 +46,15 @@ class ClientController extends Controller
     // Show Details Client
     public function clientDetails($id) {
 
-        $id = $id;
-        $properties = docflowProperties::where('id','=',$id)->get();
+//        $id = $id;
+        $properties = docflowProperties::where('id','=',$id)->sortByDesc('cli_name')->get();
         return view('client.clientdetails')
                     ->with('properties',$properties);
     }
 
     public function clientDetailsResume($id) {
 
-        $id = $id;
+//        $id = $id;
         $properties = docflowProperties::where('id','=',$id)->get();
         $properties = json_decode($properties[0]->config_properties);
 

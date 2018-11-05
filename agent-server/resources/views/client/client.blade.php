@@ -14,7 +14,7 @@
                     <div class="content table-responsive table-full-width">
                         <table class="table table-hover">
                             <thead>
-                            <th>ID</th>
+                            {{--<th>ID</th>--}}
                             <th>Name</th>
                             <th>Environment</th>
                             <th>Version</th>
@@ -24,7 +24,7 @@
                             <tbody>
                             @foreach( $clients as $cli )
                                 <tr>
-                                    <td> {{ $cli->id }}</td>
+                                    {{--<td> {{ $cli->id }}</td>--}}
                                     <td> {{ strtoupper($cli->cli_name) }} </td>
                                     <td> {{ strtoupper($cli->cli_env) }} </td>
                                     <td> {{ $cli->cli_version_system }} </td>
