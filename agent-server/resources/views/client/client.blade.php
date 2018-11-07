@@ -31,7 +31,7 @@
                                     <td> {{ date('d.m.Y', strtotime($cli->updated_at)) }} </td>
                                     <td>
                                         <a href="/api/client/details/{{ $cli->id }}">
-                                            <span class="ti-settings"></span>
+                                            <span class="fa fa-user-cog"></span>
                                         </a>
                                     </td>
                                 </tr>
