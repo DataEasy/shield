@@ -32,6 +32,8 @@ class Paginator extends AbstractPaginator implements Arrayable, ArrayAccess, Cou
      */
     public function __construct($items, $perPage, $currentPage = null, array $options = [])
     {
+        $this->options = $options;
+
         foreach ($options as $key => $value) {
             $this->{$key} = $value;
         }
@@ -114,12 +116,12 @@ class Paginator extends AbstractPaginator implements Arrayable, ArrayAccess, Cou
     /**
      * Manually indicate that the paginator does have more pages.
      *
-     * @param  bool  $value
+     * @param  bool  $hasMore
      * @return $this
      */
-    public function hasMorePagesWhen($value = true)
+    public function hasMorePagesWhen($hasMore = true)
     {
-        $this->hasMore = $value;
+        $this->hasMore = $hasMore;
 
         return $this;
     }

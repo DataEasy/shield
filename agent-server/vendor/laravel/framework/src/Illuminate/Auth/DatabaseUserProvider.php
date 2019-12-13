@@ -4,6 +4,7 @@ namespace Illuminate\Auth;
 
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Auth\UserProvider;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Contracts\Hashing\Hasher as HasherContract;
 use Illuminate\Contracts\Auth\Authenticatable as UserContract;
@@ -68,10 +69,12 @@ class DatabaseUserProvider implements UserProvider
      */
     public function retrieveByToken($identifier, $token)
     {
-        $user = $this->conn->table($this->table)->find($identifier);
+        $user = $this->getGenericUser(
+            $this->conn->table($this->table)->find($identifier)
+        );
 
-        return $user && $user->remember_token && hash_equals($user->remember_token, $token)
-                    ? $this->getGenericUser($user) : null;
+        return $user && $user->getRememberToken() && hash_equals($user->getRememberToken(), $token)
+                    ? $user : null;
     }
 
     /**
@@ -84,8 +87,8 @@ class DatabaseUserProvider implements UserProvider
     public function updateRememberToken(UserContract $user, $token)
     {
         $this->conn->table($this->table)
-                ->where('id', $user->getAuthIdentifier())
-                ->update(['remember_token' => $token]);
+                ->where($user->getAuthIdentifierName(), $user->getAuthIdentifier())
+                ->update([$user->getRememberTokenName() => $token]);
     }
 
     /**
@@ -96,13 +99,25 @@ class DatabaseUserProvider implements UserProvider
      */
     public function retrieveByCredentials(array $credentials)
     {
+        if (empty($credentials) ||
+           (count($credentials) === 1 &&
+            array_key_exists('password', $credentials))) {
+            return;
+        }
+
         // First we will add each credential element to the query as a where clause.
         // Then we can execute the query and, if we found a user, return it in a
         // generic "user" object that will be utilized by the Guard instances.
         $query = $this->conn->table($this->table);
 
         foreach ($credentials as $key => $value) {
-            if (! Str::contains($key, 'password')) {
+            if (Str::contains($key, 'password')) {
+                continue;
+            }
+
+            if (is_array($value) || $value instanceof Arrayable) {
+                $query->whereIn($key, $value);
+            } else {
                 $query->where($key, $value);
             }
         }

@@ -6,7 +6,8 @@
     <link rel="icon" type="image/png" sizes="96x96" href="img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
+    <title> {{ config('app.name') }} - {{ config('config.version') }}</title>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -134,19 +135,22 @@
             </div>
         </nav>
 
-
         @yield('content')
 
-        <footer class="footer">
-            <div class="container-fluid">
-                <div class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script> by <a href="http://www.dataeasy.com.br">DataEasy <img width="8%" src="{{ asset('img/logo/logo.png') }}"></img></a>
-                </div>
-            </div>
-        </footer>
-
     </div>
+
 </div>
+
+<div class="footer">
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="copyright pull-right">
+                SHIELD {{ config('config.version')}} | 
+                &copy; <script>document.write(new Date().getFullYear())</script> by <a href="http://www.dataeasy.com.br">DataEasy <img width="8%" src="{{ asset('img/logo/logo.png') }}"></img></a>
+            </div>
+        </div>
+    </footer>
+</div>    
 
 
 </body>

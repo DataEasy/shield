@@ -14,6 +14,7 @@ class Pluralizer
     public static $uncountable = [
         'audio',
         'bison',
+        'cattle',
         'chassis',
         'compensation',
         'coreopsis',
@@ -31,6 +32,7 @@ class Pluralizer
         'hardware',
         'information',
         'jedi',
+        'kin',
         'knowledge',
         'love',
         'metadata',
@@ -43,6 +45,8 @@ class Pluralizer
         'pokemon',
         'police',
         'rain',
+        'recommended',
+        'related',
         'rice',
         'series',
         'sheep',
@@ -62,7 +66,7 @@ class Pluralizer
      */
     public static function plural($value, $count = 2)
     {
-        if ((int) $count === 1 || static::uncountable($value)) {
+        if ((int) abs($count) === 1 || static::uncountable($value)) {
             return $value;
         }
 

@@ -3,12 +3,13 @@
 namespace DummyNamespace;
 
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class DummyClass extends TestCase
 {
     /**
-     * A basic test example.
+     * A basic unit test example.
      *
      * @return void
      */
