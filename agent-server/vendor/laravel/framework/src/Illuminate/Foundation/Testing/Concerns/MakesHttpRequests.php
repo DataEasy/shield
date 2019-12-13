@@ -26,6 +26,13 @@ trait MakesHttpRequests
     protected $serverVariables = [];
 
     /**
+     * Indicates whether redirects should be followed.
+     *
+     * @var bool
+     */
+    protected $followRedirects = false;
+
+    /**
      * Define additional headers to be sent with the request.
      *
      * @param  array $headers
@@ -80,7 +87,7 @@ trait MakesHttpRequests
     /**
      * Disable middleware for the test.
      *
-     * @param  string|array  $middleware
+     * @param  string|array|null  $middleware
      * @return $this
      */
     public function withoutMiddleware($middleware = null)
@@ -101,6 +108,52 @@ trait MakesHttpRequests
         }
 
         return $this;
+    }
+
+    /**
+     * Enable the given middleware for the test.
+     *
+     * @param  string|array|null  $middleware
+     * @return $this
+     */
+    public function withMiddleware($middleware = null)
+    {
+        if (is_null($middleware)) {
+            unset($this->app['middleware.disable']);
+
+            return $this;
+        }
+
+        foreach ((array) $middleware as $abstract) {
+            unset($this->app[$abstract]);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Automatically follow any redirects returned from the response.
+     *
+     * @return $this
+     */
+    public function followingRedirects()
+    {
+        $this->followRedirects = true;
+
+        return $this;
+    }
+
+    /**
+     * Set the referer header and previous URL session value in order to simulate a previous request.
+     *
+     * @param  string  $url
+     * @return $this
+     */
+    public function from(string $url)
+    {
+        $this->app['session']->setPreviousUrl($url);
+
+        return $this->withHeader('referer', $url);
     }
 
     /**
@@ -242,6 +295,34 @@ trait MakesHttpRequests
     }
 
     /**
+     * Visit the given URI with a OPTION request.
+     *
+     * @param  string  $uri
+     * @param  array  $data
+     * @param  array  $headers
+     * @return \Illuminate\Foundation\Testing\TestResponse
+     */
+    public function option($uri, array $data = [], array $headers = [])
+    {
+        $server = $this->transformHeadersToServerVars($headers);
+
+        return $this->call('OPTION', $uri, $data, [], [], $server);
+    }
+
+    /**
+     * Visit the given URI with a OPTION request, expecting a JSON response.
+     *
+     * @param  string  $uri
+     * @param  array  $data
+     * @param  array  $headers
+     * @return \Illuminate\Foundation\Testing\TestResponse
+     */
+    public function optionJson($uri, array $data = [], array $headers = [])
+    {
+        return $this->json('OPTION', $uri, $data, $headers);
+    }
+
+    /**
      * Call the given URI with a JSON request.
      *
      * @param  string  $method
@@ -276,7 +357,7 @@ trait MakesHttpRequests
      * @param  array  $cookies
      * @param  array  $files
      * @param  array  $server
-     * @param  string  $content
+     * @param  string|null  $content
      * @return \Illuminate\Foundation\Testing\TestResponse
      */
     public function call($method, $uri, $parameters = [], $cookies = [], $files = [], $server = [], $content = null)
@@ -293,6 +374,10 @@ trait MakesHttpRequests
         $response = $kernel->handle(
             $request = Request::createFromBase($symfonyRequest)
         );
+
+        if ($this->followRedirects) {
+            $response = $this->followRedirects($response);
+        }
 
         $kernel->terminate($request, $response);
 
@@ -341,7 +426,7 @@ trait MakesHttpRequests
      */
     protected function formatServerHeaderKey($name)
     {
-        if (! Str::startsWith($name, 'HTTP_') && $name != 'CONTENT_TYPE' && $name != 'REMOTE_ADDR') {
+        if (! Str::startsWith($name, 'HTTP_') && $name !== 'CONTENT_TYPE' && $name !== 'REMOTE_ADDR') {
             return 'HTTP_'.$name;
         }
 
@@ -373,6 +458,23 @@ trait MakesHttpRequests
         }
 
         return $files;
+    }
+
+    /**
+     * Follow a redirect chain until a non-redirect is received.
+     *
+     * @param  \Illuminate\Http\Response  $response
+     * @return \Illuminate\Http\Response|\Illuminate\Foundation\Testing\TestResponse
+     */
+    protected function followRedirects($response)
+    {
+        while ($response->isRedirect()) {
+            $response = $this->get($response->headers->get('Location'));
+        }
+
+        $this->followRedirects = false;
+
+        return $response;
     }
 
     /**

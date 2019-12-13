@@ -20,17 +20,33 @@ class SQLiteBuilder extends Builder
         $this->connection->select($this->grammar->compileDropAllTables());
 
         $this->connection->select($this->grammar->compileDisableWriteableSchema());
+
+        $this->connection->select($this->grammar->compileRebuild());
     }
 
     /**
-     * Delete the database file & re-create it.
+     * Drop all views from the database.
+     *
+     * @return void
+     */
+    public function dropAllViews()
+    {
+        $this->connection->select($this->grammar->compileEnableWriteableSchema());
+
+        $this->connection->select($this->grammar->compileDropAllViews());
+
+        $this->connection->select($this->grammar->compileDisableWriteableSchema());
+
+        $this->connection->select($this->grammar->compileRebuild());
+    }
+
+    /**
+     * Empty the database file.
      *
      * @return void
      */
     public function refreshDatabaseFile()
     {
-        unlink($this->connection->getDatabaseName());
-
-        touch($this->connection->getDatabaseName());
+        file_put_contents($this->connection->getDatabaseName(), '');
     }
 }

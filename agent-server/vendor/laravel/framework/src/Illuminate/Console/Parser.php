@@ -35,6 +35,8 @@ class Parser
      *
      * @param  string  $expression
      * @return string
+     *
+     * @throws \InvalidArgumentException
      */
     protected static function name($expression)
     {
@@ -80,7 +82,7 @@ class Parser
      */
     protected static function parseArgument($token)
     {
-        list($token, $description) = static::extractDescription($token);
+        [$token, $description] = static::extractDescription($token);
 
         switch (true) {
             case Str::endsWith($token, '?*'):
@@ -106,7 +108,7 @@ class Parser
      */
     protected static function parseOption($token)
     {
-        list($token, $description) = static::extractDescription($token);
+        [$token, $description] = static::extractDescription($token);
 
         $matches = preg_split('/\s*\|\s*/', $token, 2);
 
@@ -141,6 +143,6 @@ class Parser
     {
         $parts = preg_split('/\s+:\s+/', trim($token), 2);
 
-        return count($parts) === 2 ? $parts : [$token, null];
+        return count($parts) === 2 ? $parts : [$token, ''];
     }
 }

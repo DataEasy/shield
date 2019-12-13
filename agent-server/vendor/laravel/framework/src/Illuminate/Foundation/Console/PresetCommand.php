@@ -4,18 +4,17 @@ namespace Illuminate\Foundation\Console;
 
 use InvalidArgumentException;
 use Illuminate\Console\Command;
-use Illuminate\Support\Traits\Macroable;
 
 class PresetCommand extends Command
 {
-    use Macroable;
-
     /**
      * The console command signature.
      *
      * @var string
      */
-    protected $signature = 'preset { type : The preset type (none, bootstrap, vue, react) }';
+    protected $signature = 'preset
+                            { type : The preset type (none, bootstrap, vue, react) }
+                            { --option=* : Pass an option to the preset command }';
 
     /**
      * The console command description.
@@ -28,6 +27,8 @@ class PresetCommand extends Command
      * Execute the console command.
      *
      * @return void
+     *
+     * @throws \InvalidArgumentException
      */
     public function handle()
     {

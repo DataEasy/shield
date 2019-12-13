@@ -141,7 +141,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
@@ -157,9 +156,6 @@
                             <div id="versionBarChart" class="ct-chart ct-perfect-fourth"></div>
 
                             <div class="footer">
-                                <div class="chart-legend">
-
-                                </div>
                                 <hr>
                                 <div class="stats">
                                     <i class="ti-timer"></i> Daily Updates
